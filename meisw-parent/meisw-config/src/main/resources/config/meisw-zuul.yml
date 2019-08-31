@@ -1,0 +1,15 @@
+zuul:
+  routes:
+    aaa:
+      path: /aaa/**
+      serviceId: aaa
+    bbb:
+      path: /bbb/**
+      serviceId: bbb
+    ccc:
+      path: /ccc/**
+      serviceId: ccc
+    ddd:
+      path: /ddd/**
+      serviceId: ddd
+  

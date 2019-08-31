@@ -1,0 +1,21 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
+server:
+  port: 9000
+spring:
+  application:
+    name: meisw-kibana
+eureka:
+  instance:
+    preferIpAddress: true 
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+#kibana_login_page: http://192.168.254.131:5601/login
+#kibana_login_on_page: http://192.168.254.131:5601/api/security/v1/login
+#elasticsearchHosts=192.168.254.131:9200

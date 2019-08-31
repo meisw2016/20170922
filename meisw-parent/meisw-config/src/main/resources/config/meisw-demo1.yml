@@ -1,0 +1,12 @@
+#spring:
+#  datasource:
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@localhost:1521:iomp
+#    username: root
+#    password: root
+#  jpa:
+#    showsql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.Oracle10gDialect
+abc: abc
