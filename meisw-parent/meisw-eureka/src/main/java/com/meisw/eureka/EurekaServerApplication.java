@@ -1,4 +1,4 @@
-package cn.springcloud.book.eureka;
+package com.meisw.eureka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
