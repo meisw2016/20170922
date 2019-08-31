@@ -21,6 +21,8 @@
 
 	<modules>
 		<module>meisw-eureka</module>
+		<module>meisw-demo1</module>
+		<module>meisw-demo2<module>
 	</modules>
 
 	<dependencies>

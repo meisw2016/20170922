@@ -1,0 +1,15 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
+server:
+  port: 24150
+spring:
+  application:
+    name: meisw-demo2
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
