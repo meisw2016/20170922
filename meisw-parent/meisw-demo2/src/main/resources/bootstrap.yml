@@ -13,3 +13,33 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+#监控状态
+#info:
+#  contact:
+#    mail: test
+#    phone: test
+#endpoints:
+#  enabled: true
+#  info:
+#    sensitive: false
+#  health:
+#    sensitive: false
+#  env:
+#    sensitive: false
+#management:
+#  context-path: /
+#  security:
+#    enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        #打开所有监控点
+        include: "*"
+info:
+  app:
+    name: meisw-demo2
+    version: 1.0.0
+    author: meisw
+        

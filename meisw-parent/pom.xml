@@ -27,6 +27,7 @@
 		<module>meisw-config</module>
 		<module>eureka-es</module>
 		<module>meisw-kafka</module>
+		<module>meisw-automation</module>
 	</modules>
 
 	<dependencies>
