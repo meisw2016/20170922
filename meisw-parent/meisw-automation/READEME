@@ -1,0 +1,21 @@
+windows下杀掉PID进程
+命令：taskkill /pid PID -t -f 
+查看进程
+tasklist | findstr PID
+
+查看所有进程
+netstat -ano
+
+
+编写启动脚本
+/******************** start *********************/
+@echo
+set JAVA_HOME=H:\soft\jdk1.8.0_112
+set SOFT_HOME=H:\icdp\git\YUNMON-WEB\micro-mo\target
+set CONFIG=H:\icdp\git\YUNMON-web\micro-mo\src\main\resource
+title xxx服务
+%JAVA_HOME%\bin\java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,supend=n,address=9001 %SOFT_HOME%\micro-mo.jar --spring.config.location=%CONFIG%\bootstrap.yml
+
+goto  =注释
+goto  = --spring.config.location=%CONFIg%\bootstrap.yml -Dlogback.configurationFile=%CONF%\logback.xml > micro-agent.out 2>&1&
+
