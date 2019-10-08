@@ -25,7 +25,7 @@ public class HttpClientUtil {
 	
 	private static final Logger log = LoggerFactory.getLogger(HttpClientUtil.class);
 	
-	public static String doPostMap2(String url,Map<String,String> hreaders,String body) {
+	public static String doPostMap(String url,Map<String,String> hreaders,String body) {
 		String result = null;
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		CloseableHttpResponse response = null;
@@ -36,6 +36,48 @@ public class HttpClientUtil {
 			while(iterator.hasNext()) {
 				Entry<String,String> elem = (Entry<String, String>)iterator.next();
 				content.add(new BasicNameValuePair(elem.getKey(),elem.getValue()));
+			}
+			
+			httpPost.setEntity(new StringEntity(body));
+			
+			response = httpClient.execute(httpPost);
+			if(response!=null && response.getStatusLine().getStatusCode()==200) {
+				HttpEntity entity = response.getEntity();
+				result = EntityUtils.toString(entity,"UTF-8");
+				log.debug("result:{}",result);
+				return result;
+			}
+		}catch(UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}catch(ClientProtocolException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				httpClient.close();
+				if(response!=null) {
+					response.close();
+				}
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public static String doPostMapAndParams(String url,Map<String,String> hreaders,Map<String,String> params ,String body) {
+		String result = null;
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		CloseableHttpResponse response = null;
+		HttpPost httpPost = new HttpPost(url);
+		try {
+//			List<NameValuePair> content = new ArrayList<NameValuePair>();
+			
+			Iterator<Entry<String,String>> iterator = hreaders.entrySet().iterator();
+			while(iterator.hasNext()) {
+				Entry<String,String> elem = (Entry<String, String>)iterator.next();
+//				content.add(new BasicNameValuePair(elem.getKey(),elem.getValue()));
 			}
 			
 			httpPost.setEntity(new StringEntity(body));

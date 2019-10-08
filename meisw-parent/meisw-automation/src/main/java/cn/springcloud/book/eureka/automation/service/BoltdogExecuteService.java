@@ -40,7 +40,7 @@ public class BoltdogExecuteService {
 		//获取token
 		String token = getToken(request);
 		headers.put("token", token);
-		result = HttpClientUtil.doPostMap2(url, headers, body);
+		result = HttpClientUtil.doPostMap(url, headers, body);
 		if(StringUtils.isEmpty(result)) {
 			out.returnFail();
 			out.setMessage("获取编排接口请求服务信息为null");

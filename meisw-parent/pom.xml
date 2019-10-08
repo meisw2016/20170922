@@ -23,6 +23,7 @@
 		<module>meisw-eureka</module>
 		<module>meisw-demo1</module>
 		<module>meisw-demo2</module>
+		<module>meisw-demo3</module>
 		<module>meisw-kibana</module>
 		<module>meisw-config</module>
 		<module>eureka-es</module>
@@ -51,10 +52,10 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<repository>
 			<id>releases</id>
 			<url>http://192.168.254.131:6080/nexus-2.12.1-01/content/repositories/releases</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement> -->
 </project>
