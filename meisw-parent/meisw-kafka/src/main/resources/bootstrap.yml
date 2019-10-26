@@ -6,7 +6,18 @@ server:
   port: 24151
 spring:
   application:
-    name: meisw-demo1
+    name: meisw-kafka
+  kafka:
+    bootstrap-servers: 192.168.239.128:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: test
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 eureka:
   instance:
     preferIpAddress: true
