@@ -7,18 +7,29 @@ server:
 spring:
   application:
     name: meisw-kafka
+#主数据源
   datasource:
-    url: jdbc:mysql://localhost:3306/meisw_test
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:oracle:thin:@192.168.60.130:1521/orcl
+    username: wangye
+    password: wangye
+    driver-class-name: oracle.jdbc.driver.OracleDriver
   jpa:
     hibernate:
       ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.Oracle10Dialect
   cache:
-    type: ehcache
-    ehcache:
-      config: classpath:conf/ehcache.xml
+    type: CAFFEINE
+    cache-names:
+      - user
+    caffeine:
+      spec: 
+        maximunSize: 500
+        expireAfterWrite: 5s
+#    ehcache:
+#      config: classpath:conf/ehcache.xml
       
   redis:
     database: 0

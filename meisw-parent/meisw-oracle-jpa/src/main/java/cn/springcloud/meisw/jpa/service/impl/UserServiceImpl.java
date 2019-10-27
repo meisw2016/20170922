@@ -10,8 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import cn.springcloud.meisw.jpa.dao.UserDao;
-import cn.springcloud.meisw.jpa.po.User;
+import cn.springcloud.meisw.jpa.db1.dao.UserDao;
+import cn.springcloud.meisw.jpa.db1.po.User;
 import cn.springcloud.meisw.jpa.service.UserService;
 
 @Service
@@ -47,6 +47,17 @@ public class UserServiceImpl implements UserService {
     public Page<User> findUserNoCriteria(Integer page, Integer size) {
 		Pageable pageable = new PageRequest(page, size,Sort.Direction.ASC,"id");
 	    return userDao.findAll(pageable);
+    }
+
+	@Cacheable(value = "user",key = "'user'.concat(#name)")
+	@Override
+    public User findByUserName(String name) {
+	    return userDao.findByName(name);
+    }
+
+	@Override
+    public Long saveUser(User user) {
+		return userDao.saveAndFlush(user).getId();
     }
 	
 }
