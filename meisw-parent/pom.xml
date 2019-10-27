@@ -21,14 +21,16 @@
 
 	<modules>
 		<module>meisw-eureka</module>
+		<module>meisw-config</module>
 		<module>meisw-demo1</module>
 		<module>meisw-demo2</module>
 		<module>meisw-demo3</module>
 		<module>meisw-kibana</module>
-		<module>meisw-config</module>
 		<module>eureka-es</module>
 		<module>meisw-kafka</module>
 		<module>meisw-automation</module>
+		<module>meisw-mysql-jpa</module>
+		<module>meisw-oracle-jpa</module>
 	</modules>
 
 	<dependencies>
