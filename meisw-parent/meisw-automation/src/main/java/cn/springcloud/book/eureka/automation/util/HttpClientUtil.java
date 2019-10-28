@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,11 +15,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -121,7 +127,7 @@ public class HttpClientUtil {
 		return s;
 	}
 	
-	public static String sendPostJsonParam(String url,Map<String,String> headers,Map<String,Object> params,String body) {
+	public static String sendPostJsonParam2(String url,Map<String,String> headers,Map<String,Object> params,String body) {
 		String result = "";
 		if(params!=null) {
 			url = url + "?"+getUrlParamByMap(params);
@@ -173,6 +179,141 @@ public class HttpClientUtil {
 			}catch(IOException e) {
 				log.error("",e);
 			}
+		}
+		return result;
+	}
+	
+	private static URIBuilder paramsConvert(URIBuilder uriBuilder,Map<String,String> params) {
+		if(params!=null) {
+			List<NameValuePair> pList = new ArrayList<NameValuePair>();
+			Iterator<Entry<String,String>> par = params.entrySet().iterator();
+			while(par.hasNext()) {
+				Entry<String,String> elem = par.next();
+				pList.add(new BasicNameValuePair(elem.getKey(),elem.getValue()));
+			}
+			uriBuilder.setParameters(pList);
+		}
+		return uriBuilder;
+	}
+	
+	private static HttpPost headers2Convert(HttpPost httpPost,Map<String,String> headers) {
+		Iterator<Entry<String,String>> parEntry = headers.entrySet().iterator();
+		while(parEntry.hasNext()) {
+			Entry<String,String> elem = parEntry.next();
+			httpPost.addHeader(elem.getKey(),elem.getValue());
+		}
+		return httpPost;
+	}
+	
+	private static HttpGet headers2Convert(HttpGet httpGet,Map<String,String> headers) {
+		Iterator<Entry<String,String>> iteratorHeader = headers.entrySet().iterator();
+		while(iteratorHeader.hasNext()) {
+			Entry<String,String> h = iteratorHeader.next();
+			httpGet.setHeader(h.getKey(),h.getValue());
+		}
+		return httpGet;
+	}
+	
+	private static HttpPost body2Convert(HttpPost httpPost,String body) {
+		if(!StringUtils.isEmpty(body)) {
+			StringEntity stringEntity = new StringEntity(body,Consts.UTF_8);
+			httpPost.setEntity(stringEntity);
+		}
+		return httpPost;
+	}
+	
+	private static String getResult(HttpPost httpPost,CloseableHttpResponse response,CloseableHttpClient httpClient) {
+		String result = "";
+		try {
+			response = httpClient.execute(httpPost);
+			int code = response.getStatusLine().getStatusCode();
+			log.info("http请求返回状态码：{}",code);
+			if(response != null && response.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = response.getEntity();
+				result = EntityUtils.toString(entity,"UTF-8");
+			}else {
+				log.error("出错了!{},{}",response.getStatusLine().getReasonPhrase(),EntityUtils.toString(response.getEntity()));
+				result = response.getStatusLine()+","+EntityUtils.toString(response.getEntity());
+			}
+		}catch(ClientProtocolException e) {
+			log.error("ClientProtocolException:{}",e);
+		}catch(IOException e) {
+			log.error("IOException:{}",e);
+		}
+		return result;
+		
+	}
+	
+	/**
+	 * 
+	 * @author meisw 2019年10月16日 上午8:23:33
+	 * @Method: sendPostJsonParam 
+	 * @Description: HTTP发送POST请求
+	 * @param url	请求地址
+	 * @param headers	请求头	
+	 * @param params	请求参数
+	 * @param body		请求体
+	 * @return 
+	 * @throws
+	 */
+	public static String sendPostJsonParam(String url,Map<String,String> headers,Map<String,String> params,String body) {
+		String result = "";
+		CloseableHttpClient httpClient = HttpClients.createDefault();
+		CloseableHttpResponse response = null;
+		try {
+			URIBuilder uriBuilder = new URIBuilder(url);
+			uriBuilder = paramsConvert(uriBuilder, params);
+			HttpPost httpPost = new HttpPost(uriBuilder.build());
+			httpPost = headers2Convert(httpPost, headers);
+			httpPost = body2Convert(httpPost, body);
+			result = getResult(httpPost, response, httpClient);
+		}catch(URISyntaxException e) {
+			log.error("URISyntaxException:{}",e);
+		}finally {
+			try {
+				httpClient.close();
+				if(response!= null) {
+					response.close();
+				}
+			}catch(IOException e) {
+					e.printStackTrace();
+				}
+			
+		}
+		log.error("HTTP请求uyun编排认为结果：{}",result);
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @author meisw 2019年10月16日 上午8:41:54
+	 * @Method: doGetParams 
+	 * @Description: get请求
+	 * @param url
+	 * @param headers
+	 * @param params
+	 * @return 
+	 * @throws
+	 */
+	public static String doGetParams(String url,Map<String,String> headers,Map<String,String> params) {
+		HttpClient httpClient = HttpClients.createDefault();
+		HttpGet httpGet = null;
+		HttpResponse response = null;
+		String result = "";
+		try {
+			URIBuilder uriBuilder = new URIBuilder(url);
+			uriBuilder = paramsConvert(uriBuilder, params);
+			httpGet = new HttpGet(uriBuilder.build());
+			httpGet = headers2Convert(httpGet, headers);
+			response = httpClient.execute(httpGet);
+			HttpEntity httpEntity = response.getEntity();
+			result = EntityUtils.toString(httpEntity,"UTF-8");
+		} catch (URISyntaxException e) {
+			log.error("URISyntaxException:{}",e);
+		} catch (ClientProtocolException e) {
+			log.error("ClientProtocalException:{}",e);
+		} catch (IOException e) {
+			log.error("IOException:{}",e);
 		}
 		return result;
 	}
