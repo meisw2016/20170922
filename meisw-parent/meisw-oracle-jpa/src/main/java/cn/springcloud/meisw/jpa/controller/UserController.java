@@ -7,15 +7,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.springcloud.meisw.jpa.annotation.Meisw;
 import cn.springcloud.meisw.jpa.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,7 +42,6 @@ public class UserController {
 	 * 
 	 * @author meisw 2019年11月1日 上午9:29:58 @Method: query @Description: 用户查询，通过name查询 @param name @return @throws
 	 */
-	@Meisw
 	@PostMapping(value = "/query")
 	@ApiOperation(value = "/query", notes = "用户查询")
 	public Map<String, Object> query(@RequestParam("name") String name) {
@@ -58,6 +54,17 @@ public class UserController {
 			return result;
 		}
 		List<cn.springcloud.meisw.jpa.db1.po.User> user = userService.findByUserName(name);
+		result.put("data", user);
+		log.info("调用接口费时：{}", String.valueOf(System.currentTimeMillis() - start));
+		return result;
+	}
+	@PostMapping(value = "/queryAll")
+	@ApiOperation(value = "/queryAll", notes = "查询所有用户")
+	public Map<String, Object> queryAll() {
+		long start = System.currentTimeMillis();
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("status", "200");
+		List<cn.springcloud.meisw.jpa.db1.po.User> user = userService.findAllUser();
 		result.put("data", user);
 		log.info("调用接口费时：{}", String.valueOf(System.currentTimeMillis() - start));
 		return result;
@@ -99,7 +106,7 @@ public class UserController {
 		cn.springcloud.meisw.jpa.db1.po.User user = new cn.springcloud.meisw.jpa.db1.po.User();
 		user = userService.selectUserById(id);
 		user.setName(name);
-		user.setAge(10);
+		user.setAge(age);
 		user = userService.updateUser(user);
 		result.put("data", user);
 		return result;

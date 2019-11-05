@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	
 	@Override
-	@Cacheable(value = "user")
+	// @Cacheable(value = "user")
+	@Caching(cacheable = @Cacheable("user"), evict = {@CacheEvict("user"), @CacheEvict(value = "user", allEntries = true)})
 	public User selectUserById(Long id) {
 		User user = userDao.findById(id).get();
 		return user;
@@ -54,40 +55,39 @@ public class UserServiceImpl implements UserService {
 		return userDao.findAll(pageable);
 	}
 	
-	@Cacheable(value = "user", key = "'user'.concat(#name)")
+	// @Cacheable(value = "user", key = "'user'.concat(#name)")
+	// @Cacheable(value = "user",key = "#name")
+	@Caching(cacheable = @Cacheable("user"), evict = {@CacheEvict("user"), @CacheEvict(value = "user", allEntries = true)})
 	@Override
 	public List<User> findByUserName(String name) {
 		return userDao.findUsersByName(name);
 	}
 	
-//	@Caching(
-//			cacheable = {
-//					@Cacheable(value = "/user",key="#name"),
-//					@Cacheable(value = "/user",key="#age")
-//				}
-//			)
-	
-	@Caching(
-			put = {
-					@CachePut(value = "/user",key = "#name"),
-					@CachePut(value = "/user",key = "#age")
-			}
-			)
+	// @CachePut("user")
+	@Caching(cacheable = @Cacheable("user"), evict = {@CacheEvict("user"), @CacheEvict(value = "user", allEntries = true)})
 	@Override
 	public Long saveUser(User user) {
 		return userDao.saveAndFlush(user).getId();
 	}
-
-	@CacheEvict(key = "#id",value = "user")//,cacheManager = "cacheManager"
+	
+	 @CacheEvict(value = "user",allEntries=true)
+//	@Caching(cacheable = @Cacheable("user"), evict = {@CacheEvict("user"), @CacheEvict(value = "user", allEntries = true)})
 	@Override
 	public void deleteUserById(Long id) {
 		userDao.deleteById(id);
 	}
-
-	@CachePut(key = "#id",value = "user")//,cacheManager = "cacheManager"
+	
+	// @CachePut(key = "#id",value = "user")//,cacheManager = "cacheManager"
+	@Caching(cacheable = @Cacheable("user"), evict = {@CacheEvict("user"), @CacheEvict(value = "user", allEntries = true)})
 	@Override
 	public User updateUser(User user) {
 		return userDao.saveAndFlush(user);
+	}
+
+	@Caching(cacheable = @Cacheable("user"), evict = {@CacheEvict("user"), @CacheEvict(value = "user", allEntries = true)})
+	@Override
+	public List<User> findAllUser() {
+		return userDao.findAll();
 	}
 	
 }
