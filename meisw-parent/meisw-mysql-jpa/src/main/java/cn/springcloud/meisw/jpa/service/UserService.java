@@ -7,6 +7,10 @@ import cn.springcloud.meisw.jpa.po.User;
 
 public interface UserService {
 	
+	public User save(User user);
+	
+	public void remove(Long id);
+	
 	public User selectUserById(Long id);
 	
 	public User find(Long id);

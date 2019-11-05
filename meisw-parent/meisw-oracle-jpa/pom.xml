@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
@@ -47,15 +48,19 @@
 		</dependency>
 
 		<dependency>
-			<groupId>cn.easyproject</groupId>
+			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
-			<version>12.1.0.2.0</version>
+			<version>11.2.0.1.0 </version>
 		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.9</version>
-		</dependency>
+
+		<!-- <dependency> <groupId>cn.easyproject</groupId> <artifactId>ojdbc6</artifactId> 
+			<version>12.1.0.2.0</version> </dependency> -->
+		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>druid</artifactId> 
+			<version>1.0.9</version> </dependency> -->
+		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>druid</artifactId> 
+			<version>1.0.8</version> <exclusions> <exclusion> <groupId>com.alibaba</groupId> 
+			<artifactId>jconsole</artifactId> </exclusion> <exclusion> <groupId>com.alibaba</groupId> 
+			<artifactId>tools</artifactId> </exclusion> </exclusions> </dependency> -->
 
 
 
@@ -116,23 +121,20 @@
 		</plugins>
 	</build>
 
-	<repositories>
+	<!-- <repositories> <repository> <id>aliyun-repos</id> <url>http://maven.aliyun.com/nexus/content/groups/public/</url> 
+		<snapshots> <enabled>false</enabled> </snapshots> </repository> </repositories> -->
+	<repositories><!-- 代码库 -->
 		<repository>
-			<id>aliyun-repos</id>
+			<id>maven-ali</id>
 			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
 			</snapshots>
 		</repository>
 	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>aliyun-plugin</id>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 </project>

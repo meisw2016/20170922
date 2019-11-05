@@ -6,13 +6,19 @@ server:
   port: 24151
 spring:
   application:
-    name: meisw-kafka
+    name: meisw-oracle-jpa
 #主数据源
   datasource:
-    url: jdbc:oracle:thin:@192.168.60.130:1521/orcl
-    username: wangye
-    password: wangye
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    primary:
+      url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+      username: wy
+      password: wy
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    secondary:
+      url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+      username: wangye
+      password: wangye
+      driver-class-name: oracle.jdbc.driver.OracleDriver
   jpa:
     hibernate:
       ddl-auto: update
