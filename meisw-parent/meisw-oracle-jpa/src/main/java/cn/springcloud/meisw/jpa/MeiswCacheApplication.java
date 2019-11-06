@@ -12,11 +12,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableCaching  //开启缓存
+@EnableCaching // 开启缓存
 @EnableSwagger2
 public class MeiswCacheApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(MeiswCacheApplication.class, args);
-    }
+	
+	public static void main(String[] args) {
+		SpringApplication.run(MeiswCacheApplication.class, args);
+	}
 }

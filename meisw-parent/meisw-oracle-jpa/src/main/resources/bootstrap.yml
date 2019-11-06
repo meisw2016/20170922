@@ -9,20 +9,20 @@ spring:
     name: meisw-oracle-jpa
 #主数据源
   datasource:
-    url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
-    username: wy
-    password: wy
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-#    primary:
-#      url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
-#      username: wy
-#      password: wy
-#      driver-class-name: oracle.jdbc.driver.OracleDriver
-#    secondary:
-#      url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
-#      username: wangye
-#      password: wangye
-#      driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+#    username: wy
+#    password: wy
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+    primary:
+      jdbc-url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+      username: wy
+      password: wy
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    secondary:
+      jdbc-url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+      username: wangye
+      password: wangye
+      driver-class-name: oracle.jdbc.driver.OracleDriver
   jpa:
     hibernate:
       ddl-auto: update
