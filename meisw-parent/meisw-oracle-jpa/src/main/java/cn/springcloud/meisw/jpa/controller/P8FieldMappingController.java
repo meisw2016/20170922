@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.springcloud.meisw.jpa.annotation.MeiswLog;
 import cn.springcloud.meisw.jpa.common.MeiswException;
 import cn.springcloud.meisw.jpa.common.OutputData;
 import cn.springcloud.meisw.jpa.db1.po.P8FieldMapping;
@@ -33,6 +34,7 @@ public class P8FieldMappingController {
 	@Autowired
 	private P8FieldMappingService p8FieldMappingService;
 	
+//	@MeiswLog(operationType="add操作：",operationName="添加映射P8字段")
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ApiOperation(value = "/add", notes = "增加")
@@ -50,6 +52,7 @@ public class P8FieldMappingController {
 		return out;
 	}
 	
+//	@MeiswLog(operationType="delete操作：",operationName="删除映射P8字段")
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/del",method = RequestMethod.POST)
 	@ApiOperation(value = "/del", notes = "删除")
@@ -66,6 +69,7 @@ public class P8FieldMappingController {
 		return out;
 	}
 	
+//	@MeiswLog(operationType="update操作：",operationName="更新映射P8字段")
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@RequestMapping(value = "/update",method = RequestMethod.POST)
 	@ApiOperation(value = "/update",notes = "更新")
@@ -84,6 +88,7 @@ public class P8FieldMappingController {
 		return out;
 	}
 	
+//	@MeiswLog(operationType="query操作：",operationName="查询映射P8字段")
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@RequestMapping(value = "/queryAll",method = RequestMethod.GET)
 	@ApiOperation(value = "/queryAll",notes = "查询所有")
