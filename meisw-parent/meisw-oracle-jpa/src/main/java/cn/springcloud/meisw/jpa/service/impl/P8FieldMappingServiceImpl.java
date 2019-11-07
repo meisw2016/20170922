@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,5 +47,11 @@ public class P8FieldMappingServiceImpl implements P8FieldMappingService {
 	@Override
 	public List<P8FieldMapping> getAll() throws MeiswException {
 		return p8FieldMappingDao.getAll();
+	}
+	
+	@Caching(cacheable = @Cacheable("p8"), evict = {@CacheEvict("p8"), @CacheEvict(value = "p8", allEntries = true)})
+	@Override
+	public Page<P8FieldMapping> queryForPage(Integer page,Integer size)throws MeiswException{
+		return p8FieldMappingDao.findAll(new PageRequest(page, size));
 	}
 }

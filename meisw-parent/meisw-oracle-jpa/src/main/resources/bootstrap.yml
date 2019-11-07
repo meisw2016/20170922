@@ -33,13 +33,18 @@ spring:
           min-pool-size: 3
           max-life-time: 2000000
           borrow-connection-timeout: 10000000
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      show-sql: true
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.Oracle10Dialect
   jpa:
-    hibernate:
-      ddl-auto: update
-      show-sql: true
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.Oracle10Dialect
+    showsql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
 #  cache:
 #    type: CAFFEINE
 #    cache-names:
@@ -107,3 +112,6 @@ eureka:
       waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+logging:
+  path: /home/meisw/logs/meisw-oracle-jpa/dev

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -106,6 +107,21 @@ public class P8FieldMappingController {
 				}
 			}
 			out.setData(responseList);
+		} catch (MeiswException e) {
+			log.error("映射P8字段查询服务操作：{}",e);
+			out.returnFail(e.getMessage());
+		}
+		return out;
+	}
+	
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@RequestMapping(value = "/queryForPage",method = RequestMethod.GET)
+	@ApiOperation(value = "/queryForPage",notes = "查询所有")
+	public OutputData queryForPage(Integer page,Integer size) {
+		OutputData out = new OutputData().returnSuccess();
+		try {
+			Page<P8FieldMapping> result = p8FieldMappingService.queryForPage(page, size);
+			out.setData(result);
 		} catch (MeiswException e) {
 			log.error("映射P8字段查询服务操作：{}",e);
 			out.returnFail(e.getMessage());
