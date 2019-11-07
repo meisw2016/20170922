@@ -60,4 +60,10 @@ public class DataDicRequest implements Serializable {
 		this.sourceDataLast = sourceDataLast;
 	}
 	
+	@Override
+	public String toString() {
+		return "DataDicRequest [id=" + id + ", dataName=" + dataName + ", description=" + description + ", sensitiveData="
+		        + sensitiveData + ", sourceDataStart=" + sourceDataStart + ", sourceDataLast=" + sourceDataLast + "]";
+	}
+	
 }

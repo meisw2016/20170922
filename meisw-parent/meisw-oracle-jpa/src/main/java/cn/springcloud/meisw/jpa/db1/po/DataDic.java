@@ -3,8 +3,10 @@ package cn.springcloud.meisw.jpa.db1.po;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
@@ -18,8 +20,11 @@ import javax.persistence.Id;
  * @modify by user: {修改人} 2019年11月6日
  * @modify by reason:{方法名}:{原因}
  */
+@Entity
+@Table(name = "data_dic")
 public class DataDic implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -43,7 +48,7 @@ public class DataDic implements Serializable {
 	 * 源数据起始保留位数
 	 */
 	@Column(name = "source_data_start")
-	private String souceDataStart;
+	private String sourceDataStart;
 	/**
 	 * 源数据结尾保留位数
 	 */
@@ -82,12 +87,12 @@ public class DataDic implements Serializable {
 		this.sensitiveData = sensitiveData;
 	}
 	
-	public String getSouceDataStart() {
-		return souceDataStart;
+	public String getSourceDataStart() {
+		return sourceDataStart;
 	}
 	
-	public void setSouceDataStart(String souceDataStart) {
-		this.souceDataStart = souceDataStart;
+	public void setSourceDataStart(String sourceDataStart) {
+		this.sourceDataStart = sourceDataStart;
 	}
 	
 	public String getSourceDataLast() {

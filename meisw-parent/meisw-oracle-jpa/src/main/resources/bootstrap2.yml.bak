@@ -8,31 +8,23 @@ spring:
   application:
     name: meisw-oracle-jpa
 #主数据源
-  jta:
-    atomikos:
-      datasource:
-        primary:
-          unique-resource-name: primaryPersistenceUnit
-          max-pool-size: 5
-          min-pool-size: 1
-          max-life-time: 2000000
-          borrow-connection-timeout: 10000000
-          xa-data-source-class-name: oracle.jdbc.xa.client.OracleXADataSource
-          xa-properties:
-            user: wy
-            password: wy
-            URL: jdbc:oracle:thin:@192.168.254.132:1521/orcl
-        secondary:
-          xa-properties:
-            user: wangye
-            password: wangye
-            URL: jdbc:oracle:thin:@192.168.254.132:1521/orcl
-          xa-data-source-class-name: oracle.jdbc.xa.client.OracleXADataSource
-          unique-resource-name: secondaryPersistenceUnit
-          max-pool-size: 25
-          min-pool-size: 3
-          max-life-time: 2000000
-          borrow-connection-timeout: 10000000
+  datasource:
+#    url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+#    username: wy
+#    password: wy
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+    primary:
+      name: primary
+      jdbc-url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+      username: wy
+      password: wy
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+    secondary:
+      name: secondary
+      jdbc-url: jdbc:oracle:thin:@192.168.254.132:1521/orcl
+      username: wangye
+      password: wangye
+      driver-class-name: oracle.jdbc.driver.OracleDriver
   jpa:
     hibernate:
       ddl-auto: update
