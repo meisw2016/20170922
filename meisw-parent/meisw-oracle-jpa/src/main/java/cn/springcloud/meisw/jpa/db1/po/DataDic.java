@@ -102,5 +102,19 @@ public class DataDic implements Serializable {
 	public void setSourceDataLast(String sourceDataLast) {
 		this.sourceDataLast = sourceDataLast;
 	}
-	
+
+	public DataDic(Long id, String dataName, String description, String sensitiveData, String sourceDataStart,
+	        String sourceDataLast) {
+		super();
+		this.id = id;
+		this.dataName = dataName;
+		this.description = description;
+		this.sensitiveData = sensitiveData;
+		this.sourceDataStart = sourceDataStart;
+		this.sourceDataLast = sourceDataLast;
+	}
+	public DataDic() {
+		super();
+	}
+
 }

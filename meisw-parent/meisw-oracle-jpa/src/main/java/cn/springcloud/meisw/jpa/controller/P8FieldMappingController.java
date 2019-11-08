@@ -113,6 +113,32 @@ public class P8FieldMappingController {
 		}
 		return out;
 	}
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@RequestMapping(value = "/queryByDataNoAndAbbreviation",method = RequestMethod.GET)
+	@ApiOperation(value = "/queryByDataNoAndAbbreviation",notes = "根据dataNo和abbreviation进行查询")
+	public OutputData queryByDataNoAndAbbreviation(
+			@ApiParam(name = "dataNo", value = "dataNo", required = false) @RequestParam(value = "dataNo", required = false) String dataNo,
+			@ApiParam(name = "abbreviation", value = "abbreviation", required = false) @RequestParam(value = "abbreviation", required = false) String abbreviation
+			) {
+		OutputData out = new OutputData().returnSuccess();
+		try {
+			List<P8FieldMapping> list = p8FieldMappingService.queryByDataNoAndAbbreviation(dataNo, abbreviation);
+			List<P8FieldMappingResponse> responseList = new ArrayList<P8FieldMappingResponse>();
+			P8FieldMappingResponse response = null;
+			if(!list.isEmpty()) {
+				for(P8FieldMapping p8:list) {
+					response = new P8FieldMappingResponse();
+					BeanUtils.copyProperties(p8, response);
+					responseList.add(response);
+				}
+			}
+			out.setData(responseList);
+		} catch (MeiswException e) {
+			log.error("映射P8字段查询服务操作：{}",e);
+			out.returnFail(e.getMessage());
+		}
+		return out;
+	}
 	
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@RequestMapping(value = "/queryForPage",method = RequestMethod.GET)

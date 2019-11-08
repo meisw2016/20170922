@@ -10,6 +10,10 @@ spring:
 #主数据源
   jta:
     atomikos:
+      properties:
+        enable-logging: false   #关闭日志打印
+        #log-base-name: test
+        #log-base-dir: /home/meisw/logs/atomikos
       datasource:
         primary:
           unique-resource-name: primaryPersistenceUnit

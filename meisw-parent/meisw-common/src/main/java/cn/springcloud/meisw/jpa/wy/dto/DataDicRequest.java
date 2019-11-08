@@ -2,14 +2,23 @@ package cn.springcloud.meisw.jpa.wy.dto;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel(value = "DataDicRequest",description="字典请求实体")
 public class DataDicRequest implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	@ApiModelProperty(value = "主键ID",name = "id",required = false,example="idddddd")
 	private Long id;
+	@ApiModelProperty(value = "dataName",name = "dataName",required = false,example="dataName")
 	private String dataName;
+	@ApiModelProperty(value = "description",name = "description",required = false,example="description")
 	private String description;
+	@ApiModelProperty(value = "sensitiveData",name = "sensitiveData",required = false,example="sensitiveData")
 	private String sensitiveData;
+	@ApiModelProperty(value = "sourceDataStart",name = "sourceDataStart",required = false,example="sourceDataStart")
 	private String sourceDataStart;
+	@ApiModelProperty(value = "sourceDataLast",name = "sourceDataLast",required = false,example="sourceDataLast")
 	private String sourceDataLast;
 	
 	public Long getId() {

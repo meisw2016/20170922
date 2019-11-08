@@ -14,4 +14,7 @@ public interface DataDicService {
 	public DataDic update(DataDic dataDic)throws MeiswException;
 	
 	public List<DataDic> queryAll()throws MeiswException;
+	
+	public List<DataDic> queryByOption()throws MeiswException;
+	
 }

@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.springcloud.meisw.jpa.common.CastEntityUtil;
+import cn.springcloud.meisw.jpa.common.CastEntityUtil2;
 import cn.springcloud.meisw.jpa.common.MeiswException;
+import cn.springcloud.meisw.jpa.common.ObjectConvertUtils;
 import cn.springcloud.meisw.jpa.db1.dao.DataDicDao;
 import cn.springcloud.meisw.jpa.db1.po.DataDic;
 import cn.springcloud.meisw.jpa.service.DataDicService;
@@ -34,5 +37,20 @@ public class DataDicServiceImpl implements DataDicService {
 	@Override
 	public List<DataDic> queryAll() throws MeiswException {
 		return dataDicDao.queryAll();
+	}
+
+	@Override
+	public List<DataDic> queryByOption() throws MeiswException {
+		List<Object[]> list = dataDicDao.select();
+//		List<DataDic> dataDicList = CastEntityUtil.castEntity(list, DataDic.class);
+//		List<DataDic> dataDicList = CastEntityUtil2.castEntity(list, DataDic.class);
+		List<DataDic> dataDicList = null;
+		try {
+			dataDicList = ObjectConvertUtils.objectToBean(list, DataDic.class);
+		} catch (Exception e) {
+			/** TODO Auto-generated catch block */
+			e.printStackTrace();
+		}
+		return dataDicList;
 	}
 }
