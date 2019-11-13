@@ -31,7 +31,7 @@ spring:
       show-sql: true
       properties:
         hibernate:
-          dialect: org.hibernate.dialect.Oracle10Dialect
+          dialect: org.hibernate.dialect.Oracle10gDialect
 #  cache:
 #    type: CAFFEINE
 #    cache-names:
