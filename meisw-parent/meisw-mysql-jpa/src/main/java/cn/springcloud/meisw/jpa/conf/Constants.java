@@ -1,26 +1,18 @@
-package cn.springcloud.meisw.jpa.common;
+package cn.springcloud.meisw.jpa.conf;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Constance {
-	
-	/**
-	 * 
-	 * @author meisw 2019年11月5日 下午3:15:21
-	 * @Method: getCurrentTime 
-	 * @Description: 获取当前时间
-	 * @return 
-	 * @throws
-	 */
-	public static String getCurrentTime() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return sdf.format(new Date());
-	}
-	
-	/**
+/**
+ *  <p> 全局常用变量 </p>
+ *
+ * @description :
+ * @author : zhengqing
+ * @date : 2019/10/12 14:47
+ */
+public class Constants {
+
+    /**
      * 接口url
      */
     public static Map<String,String> URL_MAPPING_MAP = new HashMap<>();
@@ -52,4 +44,5 @@ public class Constance {
      * 登录者角色
      */
     public static final String ROLE_LOGIN = "role_login";
+
 }
