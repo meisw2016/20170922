@@ -20,3 +20,14 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+management:
+  endpoints:
+    web:
+#      exposure.include: *
+      base-path: /actuator
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full

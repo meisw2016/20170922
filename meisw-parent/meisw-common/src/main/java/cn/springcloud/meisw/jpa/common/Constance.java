@@ -7,6 +7,44 @@ import java.util.Map;
 
 public class Constance {
 	
+	public enum Auth {
+		AUTH_TOKEN_INVALID("1001","token无效"),
+		AUTH_RESOURCE_UNAUTHORIZED("403","资源未授权");
+		
+		private String code;
+		private String name;
+		
+		private Auth(String code,String name){
+			this.code = code;
+			this.name = name;
+		}
+		
+        public String getCode() {
+        	return code;
+        }
+		
+        public void setCode(String code) {
+        	this.code = code;
+        }
+		
+        public String getName() {
+        	return name;
+        }
+		
+        public void setName(String name) {
+        	this.name = name;
+        }
+		
+		public static Auth getAuth(String code){
+			for(Auth auth : Auth.values()){
+				if(auth.code.equals(code)){
+					return auth;
+				}
+			}
+			return null;
+		}
+	}
+	
 	/**
 	 * 
 	 * @author meisw 2019年11月5日 下午3:15:21

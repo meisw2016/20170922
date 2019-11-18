@@ -11,5 +11,6 @@ public class MeiswKibanaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MeiswKibanaApplication.class, args);
+        System.out.println("启动成功!");
     }
 }
