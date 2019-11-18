@@ -9,8 +9,12 @@ spring:
     name: meisw-demo2
 eureka:
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
   client:
+    register-with-eureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
       
