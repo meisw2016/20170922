@@ -46,3 +46,11 @@ eureka:
       waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+  info:
+    git:
+      mode: full
