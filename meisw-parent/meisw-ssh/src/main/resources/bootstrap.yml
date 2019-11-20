@@ -1,0 +1,28 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: meisw-es
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.254.131:9300
+      repositories:
+        enabled: true
+      properties:
+        transport:
+          tcp:
+            connect_timeout: 120s
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+#elasticsearch:
+#  ip: l27.0.0.1
+#  port: 9300
+#  cluster:
+#    name: meisw-es
+#  pool: 5

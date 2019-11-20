@@ -1,0 +1,28 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
+server:
+  port: 24151
+
+thymeleaf:
+  cache: false
+  prefix: classpath:/templates/
+  suffix: .html
+  mode: HTML5
+  encoding: UTF-8
+  content-type: text/html
+spring:
+  application:
+    name: meisw-websocket
+    
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    register-with-eureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
