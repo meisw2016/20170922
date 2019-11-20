@@ -1,0 +1,40 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
+server:
+  port: 24151
+spring:
+  application:
+    name: meisw-demo1
+#模板设置
+  thymeleaf:
+#    option: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    register-with-eureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+      base-path: /actuator
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full
+      
