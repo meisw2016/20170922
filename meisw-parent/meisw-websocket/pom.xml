@@ -9,7 +9,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.meisw</groupId>
-	<artifactId>meisw-demo1</artifactId>
+	<artifactId>meisw-websocket</artifactId>
 	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	<properties>
