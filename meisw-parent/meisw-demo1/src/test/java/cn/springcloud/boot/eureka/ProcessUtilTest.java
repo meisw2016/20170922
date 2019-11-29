@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import cn.springcloud.book.eureka.tencent.util.ProcessUtil;
+import cn.springcloud.meisw.eureka.util.ProcessUtil;
 
 public class ProcessUtilTest {
 	

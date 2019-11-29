@@ -7,12 +7,19 @@ server:
 spring:
   application:
     name: meisw-demo2
+  cloud:
+    config:
+      profile: default
+      label: master
+      discovery:
+        enabled: true
+        serviceId: meisw-demo2
 eureka:
   instance:
-    preferIpAddress: false
+    preferIpAddress: true
   client:
-    register-with-eureka: false
-    fetchRegistry: false
+    register-with-eureka: true
+    fetchRegistry: true
     server:
       waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
