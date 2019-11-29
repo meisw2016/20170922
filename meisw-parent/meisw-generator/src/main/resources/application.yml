@@ -1,3 +1,7 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
 server:
   port: 9000
   servlet:
@@ -9,39 +13,48 @@ server:
 #    background-processor-delay: 30
 #    basedir: ${user.home}/tomcat/
 spring:
+  application:
+    name: meisw-generator
+  cloud:
+    config:
+      profile: default
+      label: master
+      discovery:
+        enabled: true
+        serviceId: meisw-generator
 #    cloud:
 #      nacos:
 #        discovery:
 #          server-addr: 127.0.0.1:8848
-    banner:
+  banner:
+    charset: UTF-8
+  http:
+    encoding:
+      force: true
       charset: UTF-8
-    http:
-      encoding:
-        force: true
-        charset: UTF-8
-    application:
-        name: spring-boot-code-generator
-    freemarker:
-        request-context-attribute: request
-        suffix: .ftl
-        content-type: text/html
-        enabled: true
-        cache: false
-        charset: UTF-8
-        allow-request-override: false
-        expose-request-attributes: true
-        expose-session-attributes: true
-        expose-spring-macro-helpers: true
-        #template-loader-path: classpath:/templates/
-    mvc:
-      static-path-pattern: /static/**
+#    application:
+#        name: spring-boot-code-generator
+  freemarker:
+    request-context-attribute: request
+    suffix: .ftl
+    content-type: text/html
+    enabled: true
+    cache: false
+    charset: UTF-8
+    allow-request-override: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    #template-loader-path: classpath:/templates/                            
+  mvc:
+    static-path-pattern: /static/**
       
 eureka:
   instance:
-    preferIpAddress: false
+    preferIpAddress: true
   client:
-    register-with-eureka: false
-    fetchRegistry: false
+    register-with-eureka: true
+    fetchRegistry: true
     server:
       waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
