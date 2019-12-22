@@ -8,7 +8,7 @@ spring:
   application:
     name: meisw-kafka
   kafka:
-    bootstrap-servers: 192.168.239.128:9092
+    bootstrap-servers: 192.168.60.129:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -20,7 +20,11 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 eureka:
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
   client:
+    register-with-eureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/

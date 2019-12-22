@@ -25,14 +25,17 @@ eureka:
     serviceUrl:
       defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
       
-management:
-  endpoints:
+management: #actuator
+  endpoint:
     web:
+      base-path: /
       exposure:
-        include: *
-      base-path: /actuator
-    health:
-      show-details: always
-  info:
-    git:
-      mode: full
+        include: "*"
+info:
+  contact:
+    email:meisw@yusys.com.cn
+    phone:12306
+    
+#  info:
+#    git:
+#      mode: full
