@@ -64,6 +64,12 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.45</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.meisw</groupId>
+			<artifactId>consul-pusher</artifactId>
+			<version>1.0.9</version>
+		</dependency>
 	</dependencies>
 
 

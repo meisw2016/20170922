@@ -4,6 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import cn.springcloud.meisw.eureka.domain.StudentConfig;
 
@@ -14,6 +16,8 @@ import cn.springcloud.meisw.eureka.domain.StudentConfig;
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableConfigurationProperties({StudentConfig.class})
+@ComponentScan(value = "com.sonsul.pusher")
+@EnableScheduling //启用定时调度功能，Consul需要此功能来监控配置改变
 public class MeiswDemo1Application {
 	
 	/*@Value("${name}")

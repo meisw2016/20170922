@@ -8,7 +8,7 @@ spring:
   application:
     name: meisw-kafka
   datasource:
-    url: jdbc:mysql://192.168.60.129:3306/demo
+    url: jdbc:mysql://192.168.254.131:3306/demo?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver

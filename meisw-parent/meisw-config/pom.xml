@@ -42,12 +42,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- maven配置git插件 -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 			<!--打包时间 -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.10</version>
@@ -65,9 +65,9 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 		</plugins>
-		<finalName>${project.artifactId}.${build.time}</finalName>
+		<!-- <finalName>${project.artifactId}.${build.time}</finalName> -->
 		<!-- <finalName>${project.artifactId}-${project.version}.${build.time}</finalName> -->
 	</build>
 	
