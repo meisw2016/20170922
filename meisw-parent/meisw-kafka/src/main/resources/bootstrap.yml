@@ -3,12 +3,12 @@ app:
     host01: localhost
     port01: 8761
 server:
-  port: 24151
+  port: 24150
 spring:
   application:
     name: meisw-kafka
   kafka:
-    bootstrap-servers: 192.168.60.129:9092
+    bootstrap-servers: 192.168.60.137:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -18,6 +18,7 @@ spring:
       auto-commit-interval: 1000
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+topic: mykafka
 eureka:
   instance:
     preferIpAddress: false

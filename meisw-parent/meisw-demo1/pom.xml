@@ -91,6 +91,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+			    <groupId>org.sonarsource.scanner.maven</groupId>
+			    <artifactId>sonar-maven-plugin</artifactId>
+			    <version>3.2</version>
+			</plugin>
 			<!-- maven配置git插件 -->
 			<!-- <plugin> <groupId>pl.project13.maven</groupId> <artifactId>git-commit-id-plugin</artifactId> 
 				</plugin> -->
@@ -104,4 +109,5 @@
 		<!-- <finalName>${project.artifactId}.${build.time}</finalName> -->
 		<!-- <finalName>${project.artifactId}-${project.version}.${build.time}</finalName> -->
 	</build>
+	
 </project>

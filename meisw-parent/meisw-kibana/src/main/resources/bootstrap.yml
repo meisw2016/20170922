@@ -9,7 +9,7 @@ spring:
     name: meisw-kibana
 eureka:
   instance:
-    preferIpAddress: true 
+    preferIpAddress: false 
   client:
     registerWithEureka: false
     fetchRegistry: false

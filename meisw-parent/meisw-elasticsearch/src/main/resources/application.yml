@@ -1,0 +1,18 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: meisw-elasticsearch
+eureka:
+  instance:
+    preferIpAddress: false 
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+
+es:
+  host: 192.168.60.137
+  port: 19200
+  scheme: http

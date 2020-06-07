@@ -3,7 +3,7 @@ app:
     host01: localhost
     port01: 8761
 server:
-  port: 9000
+  port: 9003
   servlet:
       context-path: /generator
 #tomcat:
@@ -51,10 +51,10 @@ spring:
       
 eureka:
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
   client:
-    register-with-eureka: true
-    fetchRegistry: true
+    register-with-eureka: false
+    fetchRegistry: false
     server:
       waitTimeInMsWhenSyncEmpty: 0
     serviceUrl:
