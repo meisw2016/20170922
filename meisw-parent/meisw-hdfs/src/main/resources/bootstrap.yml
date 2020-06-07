@@ -1,0 +1,50 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
+server:
+  port: 21001
+spring:
+  application:
+    name: meisw-hdfs
+  cloud:
+    config:
+      profile: default
+      label: master
+      discovery:
+        enabled: true
+        serviceId: meisw-hdfs
+hdfs:
+  hadoopHome: D:\install\hadoop-2.7.1
+  address: localhost:9000
+  user: meisw
+  nameservices: localhost
+  ha_namenodes_ns1: localhost
+  namenode_rpc_address_ns1_nn1: hdfs://127.0.0.1:9000
+  client_failover_proxy_provider_ns1: org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider
+  path: D:\meisw\beats
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    register-with-eureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+management: #actuator
+  endpoint:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+info:
+  contact:
+    email:meisw@yusys.com.cn
+    phone:12306
+    
+#  info:
+#    git:
+#      mode: full

@@ -1,0 +1,35 @@
+server:
+  port: 26001
+spring:
+  application:
+    name: meisw-server-admin
+  cloud:
+    discovery:
+      service-name: ${spring.application.name}
+      register: true
+      instanceId: ${server.port}-${spring.cloud.client.hostname}-${spring.application.name}
+      health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+    host: localhost
+    port: 8500
+    config:
+      enabled: true
+      format: yaml
+      data-key: yorms-risk
+      prefix: config
+      defaultContext: consul-config
+  security:
+    user:
+      name: admin
+      password: 123456
+      
+################################# 以下eureka相关配置      
+#eureka:
+#  instance:
+#    preferIpAddress: false
+#  client:
+#    register-with-eureka: false
+#    fetchRegistry: false
+#    server:
+#      waitTimeInMsWhenSyncEmpty: 0
+#    serviceUrl:
+#      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/

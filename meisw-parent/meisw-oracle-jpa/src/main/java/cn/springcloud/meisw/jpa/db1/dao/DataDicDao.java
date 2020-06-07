@@ -11,4 +11,7 @@ public interface DataDicDao extends JpaRepository<DataDic, Long>{
 	
 	@Query("from DataDic")
 	public List<DataDic> queryAll();
+	
+	@Query(value = "select * from data_dic",nativeQuery = true)
+	public List<Object[]> select();
 }

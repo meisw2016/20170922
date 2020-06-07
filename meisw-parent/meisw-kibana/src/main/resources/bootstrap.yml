@@ -9,7 +9,7 @@ spring:
     name: meisw-kibana
 eureka:
   instance:
-    preferIpAddress: true 
+    preferIpAddress: false 
   client:
     registerWithEureka: false
     fetchRegistry: false
@@ -19,3 +19,15 @@ eureka:
 #kibana_login_page: http://192.168.254.131:5601/login
 #kibana_login_on_page: http://192.168.254.131:5601/api/security/v1/login
 #elasticsearchHosts=192.168.254.131:9200
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+      base-path: /actuator
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full

@@ -41,7 +41,34 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- maven配置git插件 -->
+			<!-- <plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+			</plugin> -->
+			<!--打包时间 -->
+			<!-- <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.10</version>
+				<executions>
+					<execution>
+						<id>timestamp-property</id>
+						<goals>
+							<goal>timestamp-property</goal>
+						</goals>
+						<configuration>
+							<name>build.time</name>
+							<pattern>yyyyMMdd</pattern>
+							<locale>zh_CN</locale>
+							<timeZone>Asia/Shanghai</timeZone>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
 		</plugins>
+		<!-- <finalName>${project.artifactId}.${build.time}</finalName> -->
+		<!-- <finalName>${project.artifactId}-${project.version}.${build.time}</finalName> -->
 	</build>
 	
 	<distributionManagement>

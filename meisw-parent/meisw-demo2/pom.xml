@@ -33,10 +33,6 @@
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 			<version>2.0.2.RELEASE</version>
@@ -51,6 +47,10 @@
 			<version>2.0.2.RELEASE</version>
 		</dependency>
 		<dependency>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>org.springframework.boot</groupId>
+		</dependency>
+		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.6.1</version>
@@ -61,22 +61,27 @@
 			<version>2.6.1</version>
 		</dependency>
 
-		<!-- elastic相关包的版本号与elasticsearch版本号保持一致 -->
-		<!-- <dependency>
-			<groupId>org.elasticsearch</groupId>
-			<artifactId>elasticsearch</artifactId>
-			<version>6.8.0</version>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.elasticsearch.client</groupId>
-			<artifactId>elasticsearch-rest-client</artifactId>
-			<version>6.8.0</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.elasticsearch.client</groupId>
-			<artifactId>elasticsearch-rest-high-level-client</artifactId>
-			<version>6.8.0</version>
-		</dependency> -->
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 

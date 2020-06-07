@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -106,6 +107,47 @@ public class P8FieldMappingController {
 				}
 			}
 			out.setData(responseList);
+		} catch (MeiswException e) {
+			log.error("映射P8字段查询服务操作：{}",e);
+			out.returnFail(e.getMessage());
+		}
+		return out;
+	}
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@RequestMapping(value = "/queryByDataNoAndAbbreviation",method = RequestMethod.GET)
+	@ApiOperation(value = "/queryByDataNoAndAbbreviation",notes = "根据dataNo和abbreviation进行查询")
+	public OutputData queryByDataNoAndAbbreviation(
+			@ApiParam(name = "dataNo", value = "dataNo", required = false) @RequestParam(value = "dataNo", required = false) String dataNo,
+			@ApiParam(name = "abbreviation", value = "abbreviation", required = false) @RequestParam(value = "abbreviation", required = false) String abbreviation
+			) {
+		OutputData out = new OutputData().returnSuccess();
+		try {
+			List<P8FieldMapping> list = p8FieldMappingService.queryByDataNoAndAbbreviation(dataNo, abbreviation);
+			List<P8FieldMappingResponse> responseList = new ArrayList<P8FieldMappingResponse>();
+			P8FieldMappingResponse response = null;
+			if(!list.isEmpty()) {
+				for(P8FieldMapping p8:list) {
+					response = new P8FieldMappingResponse();
+					BeanUtils.copyProperties(p8, response);
+					responseList.add(response);
+				}
+			}
+			out.setData(responseList);
+		} catch (MeiswException e) {
+			log.error("映射P8字段查询服务操作：{}",e);
+			out.returnFail(e.getMessage());
+		}
+		return out;
+	}
+	
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@RequestMapping(value = "/queryForPage",method = RequestMethod.GET)
+	@ApiOperation(value = "/queryForPage",notes = "查询所有")
+	public OutputData queryForPage(Integer page,Integer size) {
+		OutputData out = new OutputData().returnSuccess();
+		try {
+			Page<P8FieldMapping> result = p8FieldMappingService.queryForPage(page, size);
+			out.setData(result);
 		} catch (MeiswException e) {
 			log.error("映射P8字段查询服务操作：{}",e);
 			out.returnFail(e.getMessage());

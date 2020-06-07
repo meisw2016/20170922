@@ -45,6 +45,18 @@ public class DomainRequest implements Serializable{
 	public String toString() {
 		return "DomainRequest [id=" + id + ", domainNo=" + domainNo + ", codeValue=" + codeValue + ", codeZh=" + codeZh + "]";
 	}
+
+	public DomainRequest(Long id, String domainNo, String codeValue, String codeZh) {
+		super();
+		this.id = id;
+		this.domainNo = domainNo;
+		this.codeValue = codeValue;
+		this.codeZh = codeZh;
+	}
+
+	public DomainRequest() {
+		super();
+	}
 	
 	
 }

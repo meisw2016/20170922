@@ -1,0 +1,36 @@
+app:
+  eureka:
+    host01: localhost
+    port01: 8761
+server:
+  port: 24151
+spring:
+  application:
+    name: meisw-spark
+    
+spark:
+  app-name: meisw
+  master: local[4]
+  spark-home: 1
+    
+eureka:
+  instance:
+    preferIpAddress: false
+  client:
+    register-with-eureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://${app.eureka.host01}:${app.eureka.port01}/eureka/
+      
+management: #actuator
+  endpoint:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+info:
+  contact:
+    email:meisw@yusys.com.cn
+    phone:12306

@@ -107,4 +107,29 @@ public class DataDicController {
 		}
 		return out;
 	}
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	@RequestMapping(value = "/queryByOption",method = RequestMethod.GET)
+	@ApiOperation(value = "/queryByOption",notes = "查询所有数据字典 queryByOption")
+	public OutputData queryByOption() {
+		OutputData out = new OutputData().returnSuccess();
+		try {
+			List<DataDic> list = dataDicService.queryByOption();
+			List<DataDicResponse> respList = new ArrayList<DataDicResponse>();
+			DataDicResponse resp = null;
+			if(!list.isEmpty()) {
+				for(DataDic dic:list) {
+					resp = new DataDicResponse();
+					BeanUtils.copyProperties(dic, resp);
+					respList.add(resp);
+				}
+				out.setData(respList);
+			}else {
+				out.setData(null);
+			}
+		} catch (MeiswException e) {
+			log.error("数据字典查询服务异常：{}",e);
+			out.returnFail(e.getMessage());
+		}
+		return out;
+	}
 }

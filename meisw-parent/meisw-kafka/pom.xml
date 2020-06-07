@@ -22,6 +22,7 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 			<version>2.0.2.RELEASE</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.tencentcloudapi</groupId>
 			<artifactId>tencentcloud-sdk-java</artifactId>
@@ -37,6 +38,60 @@
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>net.sf.json-lib</groupId> <artifactId>json-lib</artifactId> 
+			<version>2.2.3</version> <classifier>jdk15</classifier>jdk版本 </dependency> -->
+		<!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+
+
+		<!-- apache-cxf -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>3.1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>3.1.6</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.58</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
 		</dependency>
 	</dependencies>
 

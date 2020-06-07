@@ -18,36 +18,70 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 			<version>2.0.2.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<!-- <dependency> <groupId>com.google.code.gson</groupId> <artifactId>gson</artifactId> 
-			<version>2.1</version> <exclusions> <exclusion> <groupId>com.google.code.gson</groupId> 
-			<artifactId>gson</artifactId> </exclusion> </exclusions> </dependency> <dependency> 
-			<groupId>org.glassfish.jersey.core</groupId> <artifactId>jersey-server</artifactId> 
-			<version>2.25.1</version> <exclusions> <exclusion> <groupId>com.sun.jersey</groupId> 
-			<artifactId>jersey-server</artifactId> </exclusion> </exclusions> </dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/com.tencentcloudapi/tencentcloud-sdk-java -->
 		<dependency>
-			<groupId>com.tencentcloudapi</groupId>
-			<artifactId>tencentcloud-sdk-java</artifactId>
-			<version>3.0.74</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.tencentcloudapi/tencentcloud-sdk-java -->
+		<!-- <dependency> <groupId>com.tencentcloudapi</groupId> <artifactId>tencentcloud-sdk-java</artifactId> 
+			<version>3.0.74</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
-<!-- 获取进程信息 -->
+		<!-- 获取进程信息 -->
+		<!-- <dependency> <groupId>net.java.dev.jna</groupId> <artifactId>jna</artifactId> 
+			<version>4.1.0</version> </dependency> -->
+
 		<dependency>
-			<groupId>net.java.dev.jna</groupId>
-			<artifactId>jna</artifactId>
-			<version>4.1.0</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
 		</dependency>
 	</dependencies>
 
@@ -57,6 +91,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+			    <groupId>org.sonarsource.scanner.maven</groupId>
+			    <artifactId>sonar-maven-plugin</artifactId>
+			    <version>3.2</version>
+			</plugin>
+			<!-- maven配置git插件 -->
+			<!-- <plugin> <groupId>pl.project13.maven</groupId> <artifactId>git-commit-id-plugin</artifactId> 
+				</plugin> -->
+			<!--打包时间 -->
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>build-helper-maven-plugin</artifactId> 
+				<version>1.10</version> <executions> <execution> <id>timestamp-property</id> 
+				<goals> <goal>timestamp-property</goal> </goals> <configuration> <name>build.time</name> 
+				<pattern>yyyyMMdd</pattern> <locale>zh_CN</locale> <timeZone>Asia/Shanghai</timeZone> 
+				</configuration> </execution> </executions> </plugin> -->
 		</plugins>
+		<!-- <finalName>${project.artifactId}.${build.time}</finalName> -->
+		<!-- <finalName>${project.artifactId}-${project.version}.${build.time}</finalName> -->
 	</build>
+	
 </project>
